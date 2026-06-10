@@ -563,15 +563,17 @@ btn.addEventListener('click', async function(e){
     try{
 
         await fetch(
-            'https://script.google.com/macros/s/AKfycbxjrC-W1CFxB0ij3O0gw43NhqwFYM8gXylegOTsEYzwPkFjw6Y7RTdOO5MIOoASZ2bA/exec',
-            {
-                method:'POST',
-                headers:{
-                    'Content-Type':'application/json'
-                },
-                body: JSON.stringify(datos)
-            }
+        'https://script.google.com/macros/s/AKfycbxjrC-W1CFxB0ij3O0gw43NhqwFYM8gXylegOTsEYzwPkFjw6Y7RTdOO5MIOoASZ2bA/exec',
+        {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: {
+            'Content-Type': 'text/plain'
+            },
+            body: JSON.stringify(datos)
+        }
         );
+  
 
         form.style.display = 'none';
         success.style.display = 'flex';
