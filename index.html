@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Telecable FIFA</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#111;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+}
+
+.container{
+    width:100%;
+    max-width:390px;
+    height:100vh;
+    position:relative;
+    overflow:hidden;
+    border-radius:30px;
+    background-image:url('FondoT.PNG');
+    background-size:cover;
+    background-position:center;
+}
+
+/* Capa oscura */
+.container::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,0.40);
+}
+
+.content{
+    position:relative;
+    z-index:2;
+    padding:30px;
+}
+
+.logo{
+    display:block;
+    width:320px;
+    margin:20px auto 40px;
+}
+
+.form-group{
+    margin-bottom:18px;
+}
+
+.mensaje-sorteo{
+    text-align: center;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 700;
+    margin: 20px 30px;
+    line-height: 1.4;
+}
+
+.mensaje-sorteo span{
+    display: block;
+    margin-top: 8px;
+    font-size: 8px;
+    font-weight: 400;
+    opacity: 0.85;
+}
+
+.mensaje-sorteo a{
+    color: #fff;
+    text-decoration: underline;
+}
+
+label{
+    display:block;
+    color:white;
+    font-size:18px;
+    font-weight:bold;
+    margin-bottom:8px;
+}
+
+label2{
+    display:block;
+    color:white;
+    font-size:12px;
+    font-weight:bold;
+    margin-bottom:8px;
+}
+
+input{
+    width:100%;
+    height:45px;
+    border:none;
+    border-radius:15px;
+    padding:10px;
+    font-size:16px;
+}
+
+.btn{
+    display:block;
+    margin:25px auto;
+    background:#ef0f43;
+    color:white;
+    border:none;
+    padding:14px 35px;
+    border-radius:15px;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#ball{
+    position:absolute;
+    bottom:-80px;
+    left:50%;
+    transform:translateX(-50%);
+    font-size:50px;
+    opacity:0;
+    pointer-events:none;
+    z-index:9999;
+}
+
+#ball.kick{
+    animation:shootBall .8s ease-out forwards;
+}
+
+@keyframes shootBall{
+    0%{
+        bottom:-80px;
+        opacity:1;
+        transform:translateX(-50%) rotate(0deg);
+    }
+
+    100%{
+        bottom:170px;
+        opacity:1;
+        transform:translateX(-50%) rotate(720deg);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+.balls-container{
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    overflow:hidden;
+    z-index:15;
+}
+
+.ball{
+    position:absolute;
+    width:60px;
+}
+
+
+
+.ball1{
+    animation:bounce1 5s linear infinite;
+}
+
+.ball2{
+    animation:bounce2 7s linear infinite;
+}
+
+.ball3{
+    animation:bounce3 6s linear infinite;
+}
+@keyframes bounce1{
+
+    0%{
+        left:-80px;
+        top:700px;
+        transform:rotate(0deg);
+    }
+
+    25%{
+        left:80px;
+        top:450px;
+        transform:rotate(360deg);
+    }
+
+    50%{
+        left:180px;
+        top:650px;
+        transform:rotate(720deg);
+    }
+
+    75%{
+        left:280px;
+        top:500px;
+        transform:rotate(1080deg);
+    }
+
+    100%{
+        left:470px;
+        top:700px;
+        transform:rotate(1440deg);
+    }
+}
+
+@keyframes bounce2{
+
+    0%{
+        left:-80px;
+        top:680px;
+        transform:rotate(0deg);
+    }
+
+    30%{
+        left:120px;
+        top:500px;
+        transform:rotate(360deg);
+    }
+
+    60%{
+        left:260px;
+        top:630px;
+        transform:rotate(720deg);
+    }
+
+    100%{
+        left:470px;
+        top:680px;
+        transform:rotate(1440deg);
+    }
+}
+
+@keyframes bounce3{
+
+    0%{
+        left:-80px;
+        top:650px;
+        transform:rotate(0deg);
+    }
+
+    20%{
+        left:90px;
+        top:350px;
+        transform:rotate(360deg);
+    }
+
+    40%{
+        left:180px;
+        top:620px;
+        transform:rotate(720deg);
+    }
+
+    65%{
+        left:300px;
+        top:450px;
+        transform:rotate(1080deg);
+    }
+
+    100%{
+        left:470px;
+        top:650px;
+        transform:rotate(1440deg);
+    }
+}
+
+
+
+
+/*Pantalla de enviando*/
+
+
+#successScreen{
+    position:absolute;
+    inset:0;
+    display:none;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    color:white;
+    z-index:100;
+}
+
+
+.loading-ball{
+    width:90px;
+    position:absolute;
+    left:50%;
+    bottom:-200px;
+    transform:translateX(-50%);
+}
+
+.ball-enter{
+    animation:ballEnter 1.2s ease-out forwards;
+}
+
+.ball-spin{
+    bottom:380px;
+    animation:spinBall 1s linear infinite;
+}
+
+@keyframes ballEnter{
+    0%{
+        bottom:-200px;
+        transform:translateX(-50%) rotate(0deg);
+    }
+
+    100%{
+        bottom:380px;
+        transform:translateX(-50%) rotate(1080deg);
+    }
+}.ball-enter{
+    animation:ballEnter 1.2s ease-out forwards;
+}
+
+@keyframes ballEnter{
+    0%{
+        bottom:-200px;
+        transform:translateX(-50%) rotate(0deg);
+    }
+
+    100%{
+        bottom:380px;
+        transform:translateX(-50%) rotate(1080deg);
+    }
+}
+@keyframes spinBall{
+    from{
+        transform:translateX(-50%) rotate(0deg);
+    }
+    to{
+        transform:translateX(-50%) rotate(360deg);
+    }
+}
+
+#luckText{
+    display:none;
+    margin-top:140px;
+    font-size:36px;
+    font-weight:900px;
+}
+
+#dataForm{
+    display:none;
+}
+
+
+/*Bola despues de enviar*/
+.bounce-ball{
+    display:block;
+    width:100px;
+    margin:20px auto 0;
+    animation:bounceVertical 1.5s ease-in-out infinite;
+}
+@keyframes bounceVertical{
+
+    0%{
+        transform:translateY(0) rotate(0deg);
+    }
+
+    20%{
+        transform:translateY(-30px) rotate(90deg);
+    }
+
+    40%{
+        transform:translateY(0) rotate(180deg);
+    }
+
+    60%{
+        transform:translateY(-15px) rotate(270deg);
+    }
+
+    80%,100%{
+        transform:translateY(0) rotate(360deg);
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+
+<div class="container">
+
+    <div class="content">
+
+        <div class="balls-container">
+    <img src="bola.png" class="ball ball1">
+    <img src="bola.png" class="ball ball2">
+    <img src="bola.png" class="ball ball3">
+</div>
+        <div class="stadium-light light-left"></div>
+        <div class="stadium-light light-right"></div>
+
+        <img src="telecable-logo.png" alt="Telecable" class="logo">
+
+        <div id="predictionScreen">
+
+    <h2 style="color:white;text-align:center;margin-bottom:20px; margin-top: 70px;">
+        🏆 Quiniela Mundialista 🏆
+    </h2>
+
+    <p style="color:white;text-align:center;font-size:14px;margin-bottom:30px;">
+        Adivina el marcador del partido inaugural y participa por una regalía mundialista de Telecable.
+    </p>
+
+   
+      
+    
+
+    <div style="display:flex;justify-content:center;align-items:center;gap:15px;margin-bottom:110px;margin-top: 100px;">
+
+        <input type="number"
+               id="scoreMx"
+               min="0"
+               max="20"
+               style="width:125px;height: 100px;text-align:center;font-size:50px;">
+
+        <span style="color:white;font-size:60px;">-</span>
+
+        <input type="number"
+               id="scoreSa"
+               min="0"
+               max="20"
+               style="width:125px;height: 100px;text-align:center;font-size:50px;">
+
+    </div>
+
+    
+
+    <p style="color:white;text-align:center;font-size:12px;">
+        
+    </p>
+
+    <button class="btn" id="predictionBtn">
+        Continuar
+    </button>
+    <img src="bola.png" class="bounce-ball">
+
+</div>
+
+        <form id="dataForm">
+
+            <div class="form-group">
+                <label>Nombre completo:</label>
+                <input type="text" id="nombre">
+            </div>
+
+            <div class="form-group">
+                <label>Teléfono:</label>
+                <input type="text" id="telefono">
+            </div>
+
+            <div class="form-group">
+                <label>Correo electrónico:</label>
+                <input type="email" id="correo">
+            </div>
+
+            <div class="mensaje-sorteo">
+                <label2>Llena tus datos y queda participando en una regalía mundialista de Telecable.</label2>
+                <br>
+                <span>
+                    *Consulta el reglamento en
+                    <a href="https://telecablecr.com" target="_blank">
+                        telecablecr.com
+                    </a>
+                </span>
+            </div>
+
+            <button type="submit" class="btn" id="submitBtn">
+                Enviar
+            </button>
+            <img src="bola.png" class="bounce-ball">
+            
+            </div>
+
+        </form>
+
+        <div id="successScreen">
+
+    <img src="bola.png"
+         class="loading-ball"
+         id="loadingBall">
+
+    <div id="luckText">
+        ¡MUCHA SUERTE! 🍀
+    </div>
+
+</div>
+
+   
+
+    </div>
+
+</div>
+
+<script>
+const predictionBtn = document.getElementById('predictionBtn');
+const predictionScreen = document.getElementById('predictionScreen');
+
+const btn = document.getElementById('submitBtn');
+const form = document.getElementById('dataForm');
+
+const success = document.getElementById('successScreen');
+const ball = document.getElementById('loadingBall');
+const text = document.getElementById('luckText');
+
+/* PANTALLA 1 -> FORMULARIO */
+
+predictionBtn.addEventListener('click', ()=>{
+
+    predictionScreen.style.display = 'none';
+    form.style.display = 'block';
+
+});
+
+/* FORMULARIO -> MUCHA SUERTE */
+
+btn.addEventListener('click', async function(e){
+
+    e.preventDefault();
+
+    const datos = {
+        nombre: document.getElementById('nombre').value,
+        telefono: document.getElementById('telefono').value,
+        correo: document.getElementById('correo').value,
+        mexico: document.getElementById('scoreMx').value,
+        sudafrica: document.getElementById('scoreSa').value
+    };
+
+    try{
+
+        await fetch(
+            'https://script.google.com/macros/s/AKfycbxjrC-W1CFxB0ij3O0gw43NhqwFYM8gXylegOTsEYzwPkFjw6Y7RTdOO5MIOoASZ2bA/exec',
+            {
+                method:'POST',
+                headers:{
+                    'Content-Type':'application/json'
+                },
+                body: JSON.stringify(datos)
+            }
+        );
+
+        form.style.display = 'none';
+        success.style.display = 'flex';
+
+        ball.classList.add('ball-enter');
+
+        setTimeout(()=>{
+            ball.classList.remove('ball-enter');
+            ball.classList.add('ball-spin');
+        },1200);
+
+        setTimeout(()=>{
+            ball.style.display='none';
+            text.style.display='block';
+        },4200);
+
+    }catch(error){
+
+        alert('Error al enviar los datos');
+
+    }
+
+});
+</script>
+
+</body>
+</html>
