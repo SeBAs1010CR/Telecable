@@ -364,9 +364,38 @@ input{
 #luckText{
     display:none;
     margin-top:140px;
-    font-size:36px;
-    font-weight:900px;
+    font-size:48px;
+    font-weight:900;
+    text-align:center;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    text-shadow:
+        0 0 10px rgba(255,255,255,.8),
+        0 0 20px rgba(255,255,255,.5);
 }
+
+#luckText.show{
+    display:block;
+    animation:luckAppear 1s ease-out forwards;
+}
+
+@keyframes luckAppear{
+    0%{
+        opacity:0;
+        transform:scale(0.3) translateY(50px);
+    }
+
+    60%{
+        opacity:1;
+        transform:scale(1.15) translateY(-10px);
+    }
+
+    100%{
+        opacity:1;
+        transform:scale(1) translateY(0);
+    }
+}
+
 
 #dataForm{
     display:none;
@@ -515,7 +544,7 @@ input{
          id="loadingBall">
 
     <div id="luckText">
-        ¡MUCHA SUERTE! 🍀
+        ¡MUCHA SUERTE!
     </div>
 
 </div>
@@ -587,7 +616,7 @@ btn.addEventListener('click', async function(e){
 
         setTimeout(()=>{
             ball.style.display='none';
-            text.style.display='block';
+            text.classList.add('show');
         },4200);
 
     }catch(error){
