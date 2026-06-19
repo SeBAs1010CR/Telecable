@@ -628,6 +628,9 @@ btn.addEventListener('click', async function(e){
 
     e.preventDefault();
 
+    btn.disabled = true;
+    btn.innerText = "Enviando...";
+
     const datos = {
         nombre: document.getElementById('nombre').value,
         telefono: document.getElementById('telefono').value,
@@ -635,8 +638,21 @@ btn.addEventListener('click', async function(e){
         campeon: document.getElementById('champion').value
     };
 
+    // Mostrar loading inmediatamente
+    form.style.display = 'none';
+    success.style.display = 'flex';
+
+    ball.classList.add('ball-enter');
+
     try {
 
+        // Espera a que termine la entrada (1.2s)
+        setTimeout(()=>{
+            ball.classList.remove('ball-enter');
+            ball.classList.add('ball-spin');
+        },1100);
+
+        // Espera respuesta REAL del Apps Script
         await fetch(
             'https://script.google.com/macros/s/AKfycbxjrC-W1CFxB0ij3O0gw43NhqwFYM8gXylegOTsEYzwPkFjw6Y7RTdOO5MIOoASZ2bA/exec',
             {
@@ -649,20 +665,9 @@ btn.addEventListener('click', async function(e){
             }
         );
 
-        form.style.display = 'none';
-        success.style.display = 'flex';
-
-        ball.classList.add('ball-enter');
-
-        setTimeout(()=>{
-            ball.classList.remove('ball-enter');
-            ball.classList.add('ball-spin');
-        },1200);
-
-        setTimeout(()=>{
-            ball.style.display='none';
-            text.classList.add('show');
-        },4200);
+        // Cuando responde, termina loading
+        ball.style.display = 'none';
+        text.classList.add('show');
 
     } catch(error) {
         alert('Error al enviar los datos');
