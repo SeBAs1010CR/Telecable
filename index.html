@@ -28,7 +28,7 @@ body{
     position:relative;
     overflow:hidden;
     border-radius:30px;
-    background-image:url('FondoT.png');
+    background-image:url('FondoGanador.png');
     background-size:cover;
     background-position:center;
 }
@@ -199,8 +199,8 @@ input{
 .ball3{
     animation:bounce3 6s linear infinite;
 }
-@keyframes bounce1{
 
+@keyframes bounce1{
     0%{
         left:-80px;
         top:700px;
@@ -209,19 +209,19 @@ input{
 
     25%{
         left:80px;
-        top:450px;
+        top:250px;
         transform:rotate(360deg);
     }
 
     50%{
         left:180px;
-        top:650px;
+        top:600px;
         transform:rotate(720deg);
     }
 
     75%{
         left:280px;
-        top:500px;
+        top:300px;
         transform:rotate(1080deg);
     }
 
@@ -233,7 +233,6 @@ input{
 }
 
 @keyframes bounce2{
-
     0%{
         left:-80px;
         top:680px;
@@ -242,13 +241,13 @@ input{
 
     30%{
         left:120px;
-        top:500px;
+        top:280px;
         transform:rotate(360deg);
     }
 
     60%{
         left:260px;
-        top:630px;
+        top:580px;
         transform:rotate(720deg);
     }
 
@@ -260,7 +259,6 @@ input{
 }
 
 @keyframes bounce3{
-
     0%{
         left:-80px;
         top:650px;
@@ -269,19 +267,19 @@ input{
 
     20%{
         left:90px;
-        top:350px;
+        top:180px;
         transform:rotate(360deg);
     }
 
     40%{
         left:180px;
-        top:620px;
+        top:570px;
         transform:rotate(720deg);
     }
 
     65%{
         left:300px;
-        top:450px;
+        top:250px;
         transform:rotate(1080deg);
     }
 
@@ -461,35 +459,74 @@ input{
         🏆 Telecable Mundialista 🏆
     </h2>
 
-    <p style="color:white;text-align:center;font-size:14px;margin-bottom:30px;">
-        Adivina el marcador del partido inaugural y participa por una regalía cortesía de Telecable.
-    </p>
+<p style="color:white;text-align:center;font-size:14px;margin-bottom:50px;">
+    Selecciona quién crees que será campeón del mundo:
+</p>
 
-   
-      
-    
+<div style="display:flex;justify-content:center;margin-bottom:40px;">
+    <select id="champion"
+        style="
+            width:280px;
+            height:55px;
+            font-size:20px;
+            border:none;
+            border-radius:12px;
+            padding:10px;
+            text-align:center;
+        ">
+        <option value="México">🇲🇽 México</option>
+        <option value="Sudáfrica">🇿🇦 Sudáfrica</option>
+        <option value="Corea del Sur">🇰🇷 Corea del Sur</option>
+        <option value="República Checa">🇨🇿 República Checa</option>
+        <option value="Canadá">🇨🇦 Canadá</option>
+        <option value="Bosnia y Herzegovina">🇧🇦 Bosnia y Herzegovina</option>
+        <option value="Qatar">🇶🇦 Qatar</option>
+        <option value="Suiza">🇨🇭 Suiza</option>
+        <option value="Brasil">🇧🇷 Brasil</option>
+        <option value="Marruecos">🇲🇦 Marruecos</option>
+        <option value="Haití">🇭🇹 Haití</option>
+        <option value="Escocia">🏴󠁧󠁢󠁳󠁣󠁴󠁿 Escocia</option>
+        <option value="Estados Unidos">🇺🇸 Estados Unidos</option>
+        <option value="Paraguay">🇵🇾 Paraguay</option>
+        <option value="Australia">🇦🇺 Australia</option>
+        <option value="Turquía">🇹🇷 Turquía</option>
+        <option value="Alemania">🇩🇪 Alemania</option>
+        <option value="Costa de Marfil">🇨🇮 Costa de Marfil</option>
+        <option value="Ecuador">🇪🇨 Ecuador</option>
+        <option value="Países Bajos">🇳🇱 Países Bajos</option>
+        <option value="Japón">🇯🇵 Japón</option>
+        <option value="Suecia">🇸🇪 Suecia</option>
+        <option value="Túnez">🇹🇳 Túnez</option>
+        <option value="Bélgica">🇧🇪 Bélgica</option>
+        <option value="Egipto">🇪🇬 Egipto</option>
+        <option value="Irán">🇮🇷 Irán</option>
+        <option value="Nueva Zelanda">🇳🇿 Nueva Zelanda</option>
+        <option value="España">🇪🇸 España</option>
+        <option value="Uruguay">🇺🇾 Uruguay</option>
+        <option value="Francia">🇫🇷 Francia</option>
+        <option value="Senegal">🇸🇳 Senegal</option>
+        <option value="Noruega">🇳🇴 Noruega</option>
+        <option value="Argentina">🇦🇷 Argentina</option>
+        <option value="Austria">🇦🇹 Austria</option>
+        <option value="Portugal">🇵🇹 Portugal</option>
+        <option value="Colombia">🇨🇴 Colombia</option>
+        <option value="Inglaterra">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Inglaterra</option>
+        <option value="Croacia">🇭🇷 Croacia</option>
+        <option value="Ghana">🇬🇭 Ghana</option>
+        <option value="Panamá">🇵🇦 Panamá</option>
+    </select>
+</div>
 
-    <div style="display:flex;justify-content:center;align-items:center;gap:15px;margin-bottom:50px;margin-top: 50px;">
-
-        <input type="number"
-               id="scoreMx"
-               min="0"
-               max="20"
-               style="width:125px;height: 100px;text-align:center;font-size:50px;">
-
-        <span style="color:white;font-size:60px;">-</span>
-
-        <input type="number"
-               id="scoreSa"
-               min="0"
-               max="20"
-               style="width:125px;height: 100px;text-align:center;font-size:50px;">
-
-    </div>
-
-    <p style="color:white;text-align:center;font-size:14px;margin-bottom:30px;">
-        Sorteo realizado por AFZ.
-    </p>
+    <div class="mensaje-sorteo">
+            
+                <br>
+                <span>
+                    *Consulta el reglamento en
+                    <a href="https://telecablecr.com" target="_blank">
+                        telecablecr.com
+                    </a>
+                </span>
+            </div>
 
     
 
@@ -502,7 +539,7 @@ input{
     </button>
     <img src="Bola.png" class="bounce-ball">
 
-    <p style="color:rgba(255, 255, 255, 0.421);text-align:center;font-size:14px;margin-bottom:30px;">
+    <p style="color:rgba(255, 255, 255, 0.421);text-align:center;font-size:14px;margin-bottom:50px;">
         Desarrollado por SAVLABS ©. 
         </p>
 
@@ -579,7 +616,6 @@ const ball = document.getElementById('loadingBall');
 const text = document.getElementById('luckText');
 
 /* PANTALLA 1 -> FORMULARIO */
-
 predictionBtn.addEventListener('click', ()=>{
 
     predictionScreen.style.display = 'none';
@@ -588,7 +624,6 @@ predictionBtn.addEventListener('click', ()=>{
 });
 
 /* FORMULARIO -> MUCHA SUERTE */
-
 btn.addEventListener('click', async function(e){
 
     e.preventDefault();
@@ -597,24 +632,22 @@ btn.addEventListener('click', async function(e){
         nombre: document.getElementById('nombre').value,
         telefono: document.getElementById('telefono').value,
         correo: document.getElementById('correo').value,
-        mexico: document.getElementById('scoreMx').value,
-        sudafrica: document.getElementById('scoreSa').value
+        campeon: document.getElementById('champion').value
     };
 
-    try{
+    try {
 
         await fetch(
-        'https://script.google.com/macros/s/AKfycbxjrC-W1CFxB0ij3O0gw43NhqwFYM8gXylegOTsEYzwPkFjw6Y7RTdOO5MIOoASZ2bA/exec',
-        {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: {
-            'Content-Type': 'text/plain'
-            },
-            body: JSON.stringify(datos)
-        }
+            'https://script.google.com/macros/s/AKfycbxjrC-W1CFxB0ij3O0gw43NhqwFYM8gXylegOTsEYzwPkFjw6Y7RTdOO5MIOoASZ2bA/exec',
+            {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'text/plain'
+                },
+                body: JSON.stringify(datos)
+            }
         );
-  
 
         form.style.display = 'none';
         success.style.display = 'flex';
@@ -631,10 +664,8 @@ btn.addEventListener('click', async function(e){
             text.classList.add('show');
         },4200);
 
-    }catch(error){
-
+    } catch(error) {
         alert('Error al enviar los datos');
-
     }
 
 });
